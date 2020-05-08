@@ -53,7 +53,7 @@ type wan struct {
 	UpSpeed          int64  `json:"upspeed,string"`
 }
 
-type statusResp struct {
+type StatusResp struct {
 	Code        int      `json:"code"`
 	Count       count    `json:"count"`
 	Cpu         cpu      `json:"cpu"`
@@ -65,9 +65,9 @@ type statusResp struct {
 	Wan         wan      `json:"wan"`
 }
 
-func (api *MiWifiApi) Status() (*statusResp, error) {
+func (api *MiWifiApi) Status() (*StatusResp, error) {
 	apiURL := api.buildApiURL("misystem/status", "api")
-	resp := &statusResp{}
+	resp := &StatusResp{}
 
 	err := sendGetRequest(apiURL, &resp)
 	if err != nil {
@@ -80,7 +80,7 @@ func (api *MiWifiApi) Status() (*statusResp, error) {
 	return resp, nil
 }
 
-func postProcessStatusResp(sr *statusResp) {
+func postProcessStatusResp(sr *StatusResp) {
 	for i := range sr.Dev {
 		el := &sr.Dev[i]
 

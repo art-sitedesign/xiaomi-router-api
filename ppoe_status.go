@@ -5,7 +5,7 @@ type ppoeStatusIp struct {
 	Address string `json:"address"`
 }
 
-type ppoeStatus struct {
+type PpoeStatus struct {
 	Code   int          `json:"code"`
 	Status int          `json:"status"`
 	Proto  string       `json:"proto"`
@@ -14,9 +14,9 @@ type ppoeStatus struct {
 	Ip     ppoeStatusIp `json:"ip"`
 }
 
-func (api *MiWifiApi) PPOEStatus() (*ppoeStatus, error) {
+func (api *MiWifiApi) PPOEStatus() (*PpoeStatus, error) {
 	apiURL := api.buildApiURL("xqnetwork/pppoe_status", "api")
-	resp := &ppoeStatus{}
+	resp := &PpoeStatus{}
 
 	err := sendGetRequest(apiURL, &resp)
 	if err != nil {

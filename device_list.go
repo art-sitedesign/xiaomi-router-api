@@ -37,15 +37,15 @@ type list struct {
 	Type       int            `json:"type"`
 }
 
-type deviceListResp struct {
+type DeviceListResp struct {
 	Code int    `json:"code"`
 	List []list `json:"list"`
 	Mac  string `json:"mac"`
 }
 
-func (api *MiWifiApi) DeviceList() (*deviceListResp, error) {
+func (api *MiWifiApi) DeviceList() (*DeviceListResp, error) {
 	apiURL := api.buildApiURL("misystem/devicelist", "api")
-	resp := &deviceListResp{}
+	resp := &DeviceListResp{}
 
 	err := sendGetRequest(apiURL, &resp)
 	if err != nil {

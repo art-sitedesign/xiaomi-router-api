@@ -28,15 +28,15 @@ type wifiDetailAllInfo struct {
 	Signal        int         `json:"signal"`
 }
 
-type wifiDetailAllResp struct {
+type WifiDetailAllResp struct {
 	Code int                 `json:"code"`
 	Bsd  int                 `json:"bsd"`
 	Info []wifiDetailAllInfo `json:"info"`
 }
 
-func (api *MiWifiApi) WifiDetailAll() (*wifiDetailAllResp, error) {
+func (api *MiWifiApi) WifiDetailAll() (*WifiDetailAllResp, error) {
 	apiURL := api.buildApiURL("xqnetwork/wifi_detail_all", "api")
-	resp := &wifiDetailAllResp{}
+	resp := &WifiDetailAllResp{}
 
 	err := sendGetRequest(apiURL, &resp)
 	if err != nil {
@@ -48,7 +48,7 @@ func (api *MiWifiApi) WifiDetailAll() (*wifiDetailAllResp, error) {
 	return resp, nil
 }
 
-func postProcessWifiDetailAllResp(wr *wifiDetailAllResp) {
+func postProcessWifiDetailAllResp(wr *WifiDetailAllResp) {
 	for i := range wr.Info {
 		el := &wr.Info[i]
 
